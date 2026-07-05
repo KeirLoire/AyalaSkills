@@ -1,0 +1,6 @@
+.env
+.env.local
+**/kasa_cache.json
+**/venv/
+__pycache__/
+*.pyc
