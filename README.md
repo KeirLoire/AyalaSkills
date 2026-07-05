@@ -19,6 +19,46 @@ This ensures:
 
 ---
 
+## Setup for AI Agents
+
+### 1. Load the Repository
+
+Point your AI coding agent (Claude Code, or another skill-aware harness) at this directory — either as its working directory or a subfolder within a larger workspace it has open:
+
+```bash
+cd C:\Users\chest\Desktop\workspace\projects\AyalaSkills
+```
+
+Claude Code and compatible agents automatically scan `skills/**/SKILL.md` for the `name`/`description` YAML frontmatter and match it against the task at hand — there is no separate registration step. See [Authoring New Skills](#authoring-new-skills) below for the frontmatter format that makes a skill discoverable.
+
+### 2. Configure `.env`
+
+The [Tapo](skills/home/tapo/SKILL.md) and [Facebook Messenger](skills/social/facebook/SKILL.md) skills need credentials to authenticate with their respective services. Copy the template and fill in real values:
+
+```bash
+cp .env.example .env
+```
+
+`.env` (see `.env.example` for the full list of variables):
+
+```env
+# TP-Link Tapo Smart Home Settings
+TAPO_USERNAME=your-tapo-email@example.com
+TAPO_PASSWORD=your-tapo-password
+
+# Facebook Messenger Bot Settings
+FB_COOKIES='[{"name": "c_user", "value": "..."}, ...]'
+AUTHORIZED_FB_USERS=comma_separated_facebook_user_ids
+DEFAULT_FB_THREAD_ID=default_facebook_thread_id
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+`.env` is gitignored — only the placeholder `.env.example` is tracked in git. Never commit `.env` or paste its values into a commit, log, or `SKILL.md`.
+
+For script usage (Tapo device control, the Messenger agent bridge) and a verification checklist, see the full [AI Agent & Claude Code Integration Guide](AGENT_GUIDE.md).
+
+---
+
 ## Directory Structure
 
 Skills are organized logically by family/personal domain and skill name:
