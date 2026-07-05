@@ -30,7 +30,7 @@ AyalaSkills/
 └── skills/                 
     ├── <category>/         <-- Family domains (e.g., home, finance, social, kitchen)
     │   └── <skill-name>/   <-- The specific task or routine
-    │       ├── skill.md    <-- Core instructions and rules for the AI
+    │       ├── SKILL.md    <-- Core instructions and rules for the AI
     │       └── [scripts/]  <-- (Optional) Helper automation scripts or tools
     └── ...
 ```
@@ -43,8 +43,8 @@ Here is the current registry of skills for household and personal management:
 
 | Category | Skill Name & Link | Description | Key Target |
 | :--- | :--- | :--- | :--- |
-| **Home** | [Tapo Device Control](skills/home/tapo/skill.md) | Turns Tapo smart plugs and bulbs on or off and checks status/power draw using auto-discovery. | Tapo smart devices |
-| **Social** | [Facebook Messenger Control](skills/social/facebook/skill.md) | Hosts a Messenger chat bot to listen for home automation commands from authorized users. | Facebook Messenger chats |
+| **Home** | [Tapo Device Control](skills/home/tapo/SKILL.md) | Turns Tapo smart plugs and bulbs on or off and checks status/power draw using auto-discovery. | Tapo smart devices |
+| **Social** | [Facebook Messenger Control](skills/social/facebook/SKILL.md) | Hosts a Messenger chat bot to listen for home automation commands from authorized users. | Facebook Messenger chats |
 
 ---
 
@@ -53,10 +53,10 @@ Here is the current registry of skills for household and personal management:
 When assigned a family task matching a skill in this registry, the agent should follow this checklist:
 
 1. **Locate the Skill**: Find the correct category and skill folder under `skills/` (e.g., `skills/home/tapo/`).
-2. **Read the Instructions**: Open and read the `skill.md` file completely before starting the task.
+2. **Read the Instructions**: Open and read the `SKILL.md` file completely before starting the task.
 3. **Follow the Constraints**: Closely adhere to **Edge Cases & Constraints** (e.g., dietary restrictions, user authorization checks).
 4. **Execute Automation Tools**: If the skill contains a `scripts/` folder, run or adapt the scripts as needed.
-5. **Verify Outputs**: Use the **Checklist** at the end of `skill.md` to verify that all criteria have been met before declaring completion.
+5. **Verify Outputs**: Use the **Checklist** at the end of `SKILL.md` to verify that all criteria have been met before declaring completion.
 
 ---
 
@@ -68,8 +68,8 @@ To add a new skill to the family registry, use the following template:
 Create a new directory:
 `skills/<category>/<skill-name>/`
 
-### 2. Format of `skill.md`
-Every skill MUST have a `skill.md` file using this markdown structure:
+### 2. Format of `SKILL.md`
+Every skill MUST have a `SKILL.md` file using this markdown structure:
 - **Title**: A clean, descriptive title (H1).
 - **Purpose**: A brief paragraph explaining why we do this task and what it solves.
 - **Inputs**: What the AI needs (e.g., "last month's spreadsheet", "a list of flight confirmation numbers").
@@ -79,28 +79,3 @@ Every skill MUST have a `skill.md` file using this markdown structure:
 - **Checklist**: Checkboxes the AI can self-evaluate at the end.
 
 ---
-
-## Setup & Running Scripts (Windows PowerShell)
-
-For skills containing Python utilities or scripts, follow these steps to run them in a clean environment:
-
-1. **Navigate to the script directory**:
-   ```powershell
-   cd "C:\Users\chest\Desktop\workspace\projects\AyalaSkills\skills\<category>\<skill-name>\scripts"
-   ```
-2. **Create a virtual environment** (if not already present):
-   ```powershell
-   python -m venv venv
-   ```
-3. **Activate the environment**:
-   ```powershell
-   .\venv\Scripts\Activate.ps1
-   ```
-4. **Install required dependencies**:
-   ```powershell
-   pip install -r requirements.txt
-   ```
-5. **Run the script**:
-   ```powershell
-   python main.py
-   ```

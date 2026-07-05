@@ -1,3 +1,8 @@
+---
+name: facebook-messenger-control
+description: Runs a Facebook Messenger bot that lets authorized family members control smart home devices (like Tapo) from a group chat, and provides a CLI bridge for AI agents to send status notifications or wait for the user's reply via Messenger. Use this whenever the user wants to set up, run, or troubleshoot the Messenger household bot, send themselves a notification through Facebook, or have an agent message them and block until they reply.
+---
+
 # Facebook Messenger Control & Agent Bridge
 
 This skill enables a Facebook Messenger chatbot to listen for commands in group chats and perform household automations, and provides a messaging bridge for other AI agents to communicate with the user.
@@ -15,13 +20,15 @@ This skill enables a Facebook Messenger chatbot to listen for commands in group 
     - Unofficial Facebook APIs cannot log in via username/password due to Facebook's security algorithms. You must use session cookies.
     - Log in to Facebook in your browser.
     - Install a cookie exporter extension (such as **Cookie Editor** or **C3C UFC Utility**).
-    - Open Facebook, click the extension, export the cookies in **JSON** format, and save the content to a file named `fb_cookies.json` inside the script directory:
-      `skills/social/facebook/scripts/fb_cookies.json`.
+    - Export the cookies in **JSON** format, then either:
+      - Set the **`FB_COOKIES`** variable in your `.env` file to the exported JSON cookie list string (preferred — the bot writes it to the cookies file on startup), or
+      - Save the JSON directly to a file named `fb_cookies.json` inside the script directory: `skills/social/facebook/scripts/fb_cookies.json`.
 2.  **Configurations**:
     - `TAPO_USERNAME` and `TAPO_PASSWORD` in the local `.env` file (for Tapo control).
     - `AUTHORIZED_FB_USERS`: List of comma-separated Facebook User IDs permitted to run commands.
     - `DEFAULT_FB_THREAD_ID`: The default group chat or thread ID used by the bot and CLI bridge.
     - `TAPO_ROOM_MAP` (Optional): Room to IP mapping for duplicate device names, e.g. `chester:192.168.1.18,garage:192.168.1.4`.
+    - `GEMINI_API_KEY` (Optional): Enables Gemini-powered natural language intent handling for chat commands.
 
 ---
 
@@ -72,7 +79,7 @@ The `--wait` flag will poll the thread and output the first new reply sent by an
 
 ## Edge Cases & Constraints
 
-- **Session Expiration**: Facebook session cookies expire periodically. If the bot fails to connect or logs "Unauthorized/Forbidden", export a fresh `fb_cookies.json`.
+- **Session Expiration**: Facebook session cookies expire periodically. If the bot fails to connect or logs "Unauthorized/Forbidden", export a fresh cookie set and update `FB_COOKIES` (or `fb_cookies.json`).
 - **E2EE Limitations**: Due to End-to-End Encryption (E2EE), the bot cannot read or reply to direct messages (one-to-one chats). It **must be used within Group Chats** or on Facebook Pages.
 - **Account Protection**: Always use a secondary or dummy Facebook account for the bot to avoid risking your primary account.
 
@@ -80,7 +87,7 @@ The `--wait` flag will poll the thread and output the first new reply sent by an
 
 ## Checklist
 
-- [ ] Is `fb_cookies.json` placed in the `scripts/` directory?
+- [ ] Is `FB_COOKIES` set in `.env`, or is a valid `fb_cookies.json` present in the `scripts/` directory?
 - [ ] Is your personal Facebook ID listed in `AUTHORIZED_FB_USERS` in `.env`?
 - [ ] Is `DEFAULT_FB_THREAD_ID` set in `.env`?
 - [ ] Does `python fb_message.py send "Test"` deliver a message successfully?

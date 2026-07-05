@@ -1,3 +1,8 @@
+---
+name: tapo-device-control
+description: Controls TP-Link Tapo smart home devices (smart plugs, light bulbs, power strips) on the local Wi-Fi network by friendly device name, with automatic IP discovery. Use this whenever the user asks to turn a light or plug on/off, toggle a device, check whether something is on, or wants power draw/status for a smart home device — even if they just name the device and an action without saying "Tapo" or "smart home".
+---
+
 # Tapo Device Control
 
 This skill enables the control of TP-Link Tapo smart home devices (smart plugs, light bulbs, power strips, etc.) using automatic local network discovery.
@@ -10,7 +15,7 @@ To dynamically locate and control smart plugs and bulbs on the local Wi-Fi netwo
 
 ## Inputs
 
-1. **Credentials**: `KASA_USERNAME` and `KASA_PASSWORD` (or `TAPO_USERNAME` and `TAPO_PASSWORD`) set in the local `.env` file (these are your Tapo cloud account details).
+1. **Credentials**: `TAPO_USERNAME` and `TAPO_PASSWORD` set in the local `.env` file (these are your Tapo cloud account details).
 2. **Device Name (Alias)**: The friendly name of the device as named in the Tapo app (e.g., "living-room-plug").
 3. **Action**: One of the following:
    - `on`: Turn the device on.
@@ -72,7 +77,7 @@ All commands are run from the script directory:
 
 ## Checklist
 
-- [ ] Are `KASA_USERNAME` and `KASA_PASSWORD` set correctly in the `.env` file?
+- [ ] Are `TAPO_USERNAME` and `TAPO_PASSWORD` set correctly in the `.env` file?
 - [ ] Is the computer on the same local network as the smart devices?
 - [ ] Does `python tapo_control.py` successfully list all active devices?
 - [ ] Can you control devices by their exact name?
