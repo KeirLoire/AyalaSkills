@@ -180,11 +180,11 @@ async def main():
     
     args = parser.parse_args()
     
-    username = os.getenv("KASA_USERNAME") or os.getenv("TAPO_USERNAME")
-    password = os.getenv("KASA_PASSWORD") or os.getenv("TAPO_PASSWORD")
+    username = os.getenv("TAPO_USERNAME")
+    password = os.getenv("TAPO_PASSWORD")
     
     if not username or not password:
-        print("Error: Please set KASA_USERNAME and KASA_PASSWORD in your environment (or .env file).", file=sys.stderr)
+        print("Error: Please set TAPO_USERNAME and TAPO_PASSWORD in your environment (or .env file).", file=sys.stderr)
         sys.exit(1)
         
     # Default to discovery and listing
