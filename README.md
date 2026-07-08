@@ -1,85 +1,38 @@
 <div align="center">
     <span style="font-size: 5rem;">🏡</span>
-    <h1>Ayala Family Skills Registry</h1>
-    <p>A repository of standardized, repeatable capabilities and automations for household management, personal projects, and family workflows.</p>
+    <h1>Ayala Skills Registry</h1>
+    <p>A repository of standardized, repeatable capabilities and automations for personal projects, system integrations, and custom workflows.</p>
 </div>
 
 ---
 
 ## About
 
-This repository serves as a centralized hub of **Ayala Family AI Skills**—structured instructions, guidelines, and automation scripts designed for our household. 
+This repository serves as a centralized hub of **Ayala Skills**—structured instructions, guidelines, and automation scripts. 
 
-Each skill represents a discrete capability or routine. By standardizing these tasks, we enable AI assistants (such as Claude, Gemini, or ChatGPT) to interact with our family projects, databases, document formats, and smart home configs with precision and safety.
-
-This ensures:
-- **Consistency**: Routine family workflows (like meal planning, tax prep, or smart home setup) are executed the same way every time.
-- **Safety**: Clear boundaries prevent the AI from generating bad files, over-scheduling events, or misclassifying budget data.
-- **Efficiency**: Speeds up repeating weekly, monthly, or annual chores through templates and automation.
-
----
-
-## Setup for AI Agents
-
-### 1. Load the Repository
-
-Point your AI coding agent (Claude Code, or another skill-aware harness) at this directory — either as its working directory or a subfolder within a larger workspace it has open:
-
-```bash
-cd C:\Users\chest\Desktop\workspace\projects\AyalaSkills
-```
-
-Claude Code and compatible agents automatically scan `skills/**/SKILL.md` for the `name`/`description` YAML frontmatter and match it against the task at hand — there is no separate registration step. See [Authoring New Skills](#authoring-new-skills) below for the frontmatter format that makes a skill discoverable.
-
-### 2. Configure `.env`
-
-The [Tapo](skills/home/tapo/SKILL.md) and [Facebook Messenger](skills/social/facebook/SKILL.md) skills need credentials to authenticate with their respective services. Copy the template and fill in real values:
-
-```bash
-cp .env.example .env
-```
-
-`.env` (see `.env.example` for the full list of variables):
-
-```env
-# TP-Link Tapo Smart Home Settings
-TAPO_USERNAME=your-tapo-email@example.com
-TAPO_PASSWORD=your-tapo-password
-
-# Facebook Messenger Bot Settings
-FB_COOKIES='[{"name": "c_user", "value": "..."}, ...]'
-AUTHORIZED_FB_USERS=comma_separated_facebook_user_ids
-DEFAULT_FB_THREAD_ID=default_facebook_thread_id
-GEMINI_API_KEY=your_gemini_api_key
-```
-
-`.env` is gitignored — only the placeholder `.env.example` is tracked in git. Never commit `.env` or paste its values into a commit, log, or `SKILL.md`.
-
-For script usage (Tapo device control, the Messenger agent bridge) and a verification checklist, see the full [AI Agent & Claude Code Integration Guide](AGENT_GUIDE.md).
+Each skill represents a discrete capability or routine. By standardizing these tasks, we enable AI assistants (such as Claude Code, Gemini, or ChatGPT) to interact with our projects, databases, document formats, and smart home configurations with precision and safety.
 
 ---
 
 ## Directory Structure
 
-Skills are organized logically by family/personal domain and skill name:
+Skills are organized logically by category and name:
 
 ```text
-AyalaSkills/
+<repository-name>/
 │
 ├── README.md               <-- Repository guidelines (this file)
 └── skills/                 
-    ├── <category>/         <-- Family domains (e.g., home, finance, social, kitchen)
-    │   └── <skill-name>/   <-- The specific task or routine
-    │       ├── SKILL.md    <-- Core instructions and rules for the AI
-    │       └── [scripts/]  <-- (Optional) Helper automation scripts or tools
+    ├── <category>/         <-- Skill domain (e.g. home, finance, social)
+    │   └── <skill-name>/   <-- The specific task or capability
+    │       ├── SKILL.md    <-- Main instruction file (with YAML frontmatter)
+    │       └── [scripts/]  <-- (Optional) Supporting automation tools or helper scripts
     └── ...
 ```
 
 ---
 
 ## Skill Catalog
-
-Here is the current registry of skills for household and personal management:
 
 | Category | Skill Name & Link | Description | Key Target |
 | :--- | :--- | :--- | :--- |
@@ -88,34 +41,14 @@ Here is the current registry of skills for household and personal management:
 
 ---
 
-## How to Use a Skill (For AI Agents)
+## How to Author New Skills
 
-When assigned a family task matching a skill in this registry, the agent should follow this checklist:
-
-1. **Locate the Skill**: Find the correct category and skill folder under `skills/` (e.g., `skills/home/tapo/`).
-2. **Read the Instructions**: Open and read the `SKILL.md` file completely before starting the task.
-3. **Follow the Constraints**: Closely adhere to **Edge Cases & Constraints** (e.g., dietary restrictions, user authorization checks).
-4. **Execute Automation Tools**: If the skill contains a `scripts/` folder, run or adapt the scripts as needed.
-5. **Verify Outputs**: Use the **Checklist** at the end of `SKILL.md` to verify that all criteria have been met before declaring completion.
-
----
-
-## Authoring New Skills
-
-To add a new skill to the family registry, use the following template:
-
-### 1. Create the Folder
-Create a new directory:
-`skills/<category>/<skill-name>/`
-
-### 2. Format of `SKILL.md`
-Every skill MUST have a `SKILL.md` file using this markdown structure:
-- **Title**: A clean, descriptive title (H1).
-- **Purpose**: A brief paragraph explaining why we do this task and what it solves.
-- **Inputs**: What the AI needs (e.g., "last month's spreadsheet", "a list of flight confirmation numbers").
-- **Detailed Steps**: Precise, sequential instructions. Avoid ambiguity.
-- **Edge Cases & Constraints**: Rules the AI must respect (e.g., "do not buy non-organic apples", "never schedule flights with less than 2-hour layovers").
-- **Examples**: Sample outputs or configuration files for the AI to emulate.
-- **Checklist**: Checkboxes the AI can self-evaluate at the end.
-
----
+To add a new capability:
+1. Create a directory: `skills/<category>/<skill-name>/`
+2. Add a `SKILL.md` file using this structure:
+   - **YAML Frontmatter**: Define `name` and `description` triggers.
+   - **Purpose**: High-level explanation of the task.
+   - **Inputs**: Required inputs/context.
+   - **Detailed Steps**: Sequential guide for the AI.
+   - **Edge Cases & Constraints**: Specific safety rules and parameters.
+   - **Checklist**: Validation points for the AI before completing tasks.

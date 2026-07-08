@@ -1,6 +1,6 @@
 ---
 name: tapo-device-control
-description: Controls TP-Link Tapo smart home devices (smart plugs, light bulbs, power strips) on the local Wi-Fi network by friendly device name, with automatic IP discovery. Use this whenever the user asks to turn a light or plug on/off, toggle a device, check whether something is on, or wants power draw/status for a smart home device — even if they just name the device and an action without saying "Tapo" or "smart home".
+description: Control TP-Link Tapo smart home devices (plugs, bulbs, chimes) using automatic local network discovery.
 ---
 
 # Tapo Device Control
@@ -41,7 +41,7 @@ To dynamically locate and control smart plugs and bulbs on the local Wi-Fi netwo
 
 ## Script Commands
 
-All commands are run from the script directory:
+All commands are run from the project directory:
 `skills/home/tapo/scripts/`
 
 - **Scan Network and List Devices**:
