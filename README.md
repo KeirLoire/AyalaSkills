@@ -1,6 +1,6 @@
 <div align="center">
     <span style="font-size: 5rem;">🏡</span>
-    <h1>Ayala Skills Registry</h1>
+    <h1>AI Skills Registry</h1>
     <p>A repository of standardized, repeatable capabilities and automations for personal projects, system integrations, and custom workflows.</p>
 </div>
 
@@ -8,7 +8,7 @@
 
 ## About
 
-This repository serves as a centralized hub of **Ayala Skills**—structured instructions, guidelines, and automation scripts. 
+This repository serves as a centralized hub of **AI Skills**—structured instructions, guidelines, and automation scripts. 
 
 Each skill represents a discrete capability or routine. By standardizing these tasks, we enable AI assistants (such as Claude Code, Gemini, or ChatGPT) to interact with our projects, databases, document formats, and smart home configurations with precision and safety.
 
